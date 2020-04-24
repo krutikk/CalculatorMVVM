@@ -50,22 +50,23 @@ class Calculator {
 
     @VisibleForTesting
     internal fun getDigits(expression: String): MutableList<Digit> {
-        val digits = expression.split("+", "-", "/", "*")
+        val digits = expression.split("([*\\/]|\\b\\s*-|\\b\\s*\\+)".toRegex())
         val outPut: MutableList<Digit> = arrayListOf()
 
-        //Kotlin's answer to enhanced for loop
         digits.indices.mapTo(outPut) {
             Digit(digits[it])
         }
         return outPut
     }
 
+
     @VisibleForTesting
     internal fun getOperators(expression: String): MutableList<Operator> {
         //this ugly stuff is called Regex; Regular ExpressionDataModel/
         //Basically saying split based on number or decimal numbers.
-        val operators = expression.split("\\d+(?:\\.\\d+)?".toRegex())
+        val operators = expression.split("((?<!\\d)-\\d+|\\d+)".toRegex())
             .filterNot { it == "" }
+            .filterNot { it == "." }
             .toMutableList()
         val outPut = mutableListOf<Operator>()
 

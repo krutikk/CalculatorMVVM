@@ -13,7 +13,6 @@ class Validator {
     private fun invalidStart(expression: String): Boolean {
         return when {
             expression.startsWith("+") -> true
-            expression.startsWith("-") -> true
             expression.startsWith("*") -> true
             expression.startsWith("/") -> true
             expression.startsWith(".") -> true

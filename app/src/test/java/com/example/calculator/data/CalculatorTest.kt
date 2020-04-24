@@ -25,6 +25,14 @@ class CalculatorTest {
             Digit("1"),
             Digit("4")
         )
+        const val MULTIPLE_OPERATOR_EXPRESSION_WITH_DOT = "-4.5+3-2*1+4"
+        val DIGITSWITHDOT = listOf(
+            Digit("-4.5"),
+            Digit("3"),
+            Digit("2"),
+            Digit("1"),
+            Digit("4")
+        )
         val OPERATORS = mutableListOf(
             Operator("+"),
             Operator("-"),
@@ -48,10 +56,19 @@ class CalculatorTest {
     }
 
     @Test
+    fun `retrieve digits with dot success`() {
+        val digits: List<Digit> =
+            calculator.getDigits(MULTIPLE_OPERATOR_EXPRESSION_WITH_DOT)
+        assertEquals(DIGITSWITHDOT, digits)
+    }
+
+    @Test
     fun `calculate simple expression`() = runBlockingTest {
         val result = calculator.calculate(ADD_EXPRESSION)
         assertEquals(Expression(ADD_RESULT, true), result.first())
     }
+
+
 
     @Test
     fun `calculate complex expression`() = runBlockingTest {

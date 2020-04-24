@@ -1,7 +1,6 @@
 package com.example.calculator.data
 
-
-import junit.framework.Assert.assertFalse
+import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertTrue
 import org.junit.Test
 
@@ -37,6 +36,11 @@ class ValidatorTest {
     }
 
     @Test
+    fun validExpressionTestSix() {
+        assertTrue(validator.validate(MINUS_OPERATOR_START_EXPRESSION))
+    }
+
+    @Test
     fun invalidExpressionTestFive() {
         assertFalse(validator.validate(MULTIPLE_DOT_EXPRESSION))
     }
@@ -45,6 +49,7 @@ class ValidatorTest {
         const val MULTIPLE_OPERATOR_EXPRESSION = "5+3-4*5/3"
         const val ADD_OPERATOR_EXPRESSION = "3+4"
         const val ADD_OPERATOR_END_EXPRESSION = "4+"
+        const val MINUS_OPERATOR_START_EXPRESSION = "-4"
         const val ADD_OPERATOR_START_EXPRESSION = "+5"
         const val DOT_EXPRESSION = "."
         const val MULTIPLE_DOT_EXPRESSION = "3..4+2"
