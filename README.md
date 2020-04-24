@@ -16,7 +16,7 @@ Some of the features of the app include
 
 
 # Demo
-<img src="demo/favorite_list_empty_dark.png" hspace="5" width="200"/><img src="screenshots/Calc.png" hspace="5" width="200"/><img src="screenshots/calc.png" hspace="5" width="200"/>
+<img src="screenshots/Calc.png" hspace="5" width="200"/>
 
 # BuildInfo
 * Android Studio - 3.6.3
