@@ -4,14 +4,13 @@ import androidx.annotation.VisibleForTesting
 import com.example.calculator.data.model.Digit
 import com.example.calculator.data.model.Expression
 import com.example.calculator.data.model.Operator
-import com.example.calculator.domain.data.ICalculator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 
-class Calculator : ICalculator {
+class Calculator {
 
-    override fun calculate(expression: String): Flow<Expression> {
+    fun calculate(expression: String): Flow<Expression> {
         val operators: MutableList<Operator> = getOperators(expression)
         val digits: MutableList<Digit> = getDigits(expression)
 

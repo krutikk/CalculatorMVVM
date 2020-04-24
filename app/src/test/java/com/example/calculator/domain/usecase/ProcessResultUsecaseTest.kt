@@ -1,8 +1,8 @@
 package com.example.calculator.domain.usecase
 
+import com.example.calculator.data.Calculator
+import com.example.calculator.data.Validator
 import com.example.calculator.data.model.Expression
-import com.example.calculator.domain.data.ICalculator
-import com.example.calculator.domain.data.IValidator
 import com.example.calculator.domain.model.OutputValue
 import io.mockk.Called
 import io.mockk.MockKAnnotations
@@ -22,10 +22,10 @@ import org.junit.runners.JUnit4
 class ProcessResultUsecaseTest {
 
     @MockK
-    lateinit var calculator: ICalculator
+    lateinit var calculator: Calculator
 
     @MockK
-    lateinit var validator: IValidator
+    lateinit var validator: Validator
 
     lateinit var useCase: ProcessResultUsecase
 
