@@ -1,12 +1,16 @@
 package com.example.calculator.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.calculator.R
+import com.example.calculator.core.observeWith
+import com.example.calculator.databinding.CalculatorFragmentBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CalculatorFragment : Fragment() {
 
@@ -14,19 +18,29 @@ class CalculatorFragment : Fragment() {
         fun newInstance() = CalculatorFragment()
     }
 
-    private lateinit var viewModel: CalculatorViewModel
+    private val viewModel: CalculatorViewModel by viewModel()
+
+    lateinit var binding: CalculatorFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.calculator_fragment, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.calculator_fragment, container, false
+        )
+        binding.viewModel = viewModel
+        (binding.viewModel as CalculatorViewModel).viewState.observeWith(this) {
+            with(binding) {
+                viewState = it
+            }
+        }
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
-        // TODO: Use the ViewModel
+    fun onClickFriend(view: View?) {
+        Log.i("", "Now Friend")
     }
 
 }
